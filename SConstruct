@@ -48,28 +48,39 @@ env_base.AppendUnique(
         'ws2_32', 'winmm', 'd3d11', 'dxgi', 'd3dcompiler', 'dxguid',
         ],
     )
+out_dir = env_base.Dir('bin')
+
+# ### lua51.dll
+# env = env_base.Clone()
+# env.AppendUnique(
+#     CPPDEFINES = [
+#         'LUA_BUILD_AS_DLL',
+#         ],
+#     )
+# env.VariantDir(env.Dir('$TEMP/lua51_dll'), env.Dir('lua-5.1.4/src'), duplicate=0)
+# lua51_sources = env.Glob('$TEMP/lua51_dll/*.c')
+# lua51_sources.remove(env.File('$TEMP/lua51_dll/luac.c'))
+# lua51_sources.remove(env.File('$TEMP/lua51_dll/lua.c'))
+# env.CopyAs('bin/lua51.dll', env.SharedLibrary('$TEMP/lua51_dll/lua51.dll', lua51_sources)[0])
+# del env
 
 
-### luaのビルド
-env = env_base.Clone()
-env.AppendUnique(
-    CPPDEFINES = [
-        'LUA_BUILD_AS_DLL',
-        ],
-    )
-env.VariantDir(env.Dir('$TEMP/lua51_dll'), env.Dir('lua-5.1.4/src'), duplicate=0)
-lua_sources = env.Glob('$TEMP/lua51_dll/*.c')
-lua_sources.remove(env.File('$TEMP/lua51_dll/luac.c'))
-lua_sources.remove(env.File('$TEMP/lua51_dll/lua.c'))
-env.CopyAs('bin/lua51.dll', env.SharedLibrary('$TEMP/lua51_dll/lua51.dll', lua_sources)[0])
-del env
-
+### lua.exe / luac.exe
 env = env_base.Clone()
 env.VariantDir(env.Dir('$TEMP/lua_exe'), env.Dir('lua-5.1.4/src'), duplicate=0)
-lua_sources = env.Glob('$TEMP/lua_exe/*.c')
-lua_sources.remove(env.File('$TEMP/lua_exe/luac.c'))
-lua_sources.remove(env.File('$TEMP/lua_exe/lua.c'))
-env.CopyAs('bin/luac.exe', env.Program('$TEMP/lua_exe/luac.exe', [env.File('$TEMP/lua_exe/luac.c')] + lua_sources))
-env.CopyAs('bin/lua.exe', env.Program('$TEMP/lua_exe/lua.exe', [env.File('$TEMP/lua_exe/lua.c')] + lua_sources))
+lua51_sources = env.Glob('$TEMP/lua_exe/*.c')
+lua51_sources.remove(env.File('$TEMP/lua_exe/luac.c'))
+lua51_sources.remove(env.File('$TEMP/lua_exe/lua.c'))
+# env.CopyAs('bin/luac.exe', env.Program('$TEMP/lua_exe/luac.exe', [env.File('$TEMP/lua_exe/luac.c')] + lua51_sources))
+env.CopyAs(out_dir.File('lua.exe'), env.Program('$TEMP/lua_exe/lua.exe', [env.File('$TEMP/lua_exe/lua.c')] + lua51_sources))
+del env
+
+
+### luajit
+env = env_base.Clone()
+luajit2_exe, luajit2_dll = env.Command(['LuaJIT-2.1.0-beta2/src/luajit.exe', 'LuaJIT-2.1.0-beta2/src/lua51.dll'], None,
+                                       '@echo off && call msvcbuild.bat', chdir='LuaJIT-2.1.0-beta2/src')
+env.CopyAs(out_dir.File('luajit2.exe'), luajit2_exe)
+env.CopyAs(out_dir.File('lua51.dll'), luajit2_dll)
 del env
 
