@@ -10,11 +10,18 @@ import os
 env_base = Environment(
     TARGET_ARCH = 'x86_64',
     TEMP = os.environ['TEMP'],
+    PYTHON3 = File('C:/Python34/python.exe'),
     )
 env_base.AppendUnique(
     CPPDEFINES = [
         '_MBCS', '_WIN32', 'WIN32', '_DLL', 'NDEBUG',
         '_WIN32_WINNT=0x0601', '_CRT_SECURE_NO_WARNINGS', '_SCL_SECURE_NO_WARNINGS',
+        ],
+    CPPPATH = [
+        Dir('C:/Python34/include'),
+        ],
+    LIBPATH = [
+        Dir('C:/Python34/libs'),
         ],
     CCFLAGS = [
         '/MD',          # ランタイムを動的リンク
@@ -49,6 +56,8 @@ env_base.AppendUnique(
         ],
     )
 out_dir = env_base.Dir('bin')
+env_base.Default(out_dir)
+
 
 # ### lua51.dll
 # env = env_base.Clone()
@@ -92,3 +101,17 @@ env.Depends(out_dir.File('luajit2.exe'), env.CopyAs(out_dir.File('lua51.dll'), l
 env.Depends(out_dir.File('luajit2.exe'), [env.CopyAs(out_dir.Dir('jit').File(s.name), s) for s in env.Glob('LuaJIT-2.1.0-beta2/src/jit/*')])
 del env
 
+
+### prime_c.exe
+env = env_base.Clone()
+env.VariantDir(env.Dir('$TEMP/prime_c'), env.Dir('test'), duplicate=0)
+env.CopyAs(out_dir.File('prime_c.exe'), env.Program(env.File('$TEMP/prime_c/prime.c')))
+del env
+
+
+### prime_pyx.pyd
+env = env_base.Clone()
+env.VariantDir(env.Dir('$TEMP/prime_pyx'), env.Dir('test'), duplicate=0)
+env.Command('$TEMP/prime_pyx/prime_pyx.cpp', 'test/prime.pyx', '$PYTHON3 -m cython --cplus --embed -3 -o ${TARGET.abspath} ${SOURCE.abspath}')
+env.CopyAs(out_dir.File('prime_pyx.exe'), env.Program('$TEMP/prime_pyx/prime_pyx.cpp'))
+del env

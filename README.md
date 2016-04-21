@@ -40,6 +40,17 @@ lua同様に事前にバイトコンパイルしても速度は変わらなか�
   user    0m0.000s
   sys     0m0.015s
 
+参考にバイトコンパイル方法。
+binに移動しているのはjitフォルダを見つけられないとバイトコンパイルが行えないため。
+
+  $ (cd bin && ./luajit2 -bs ../test/prime.lua ../test/prime.lua.out)
+  $ time bin/luajit2 test/prime.lua.out 15000000
+  14999981
+
+  real    0m2.540s
+  user    0m0.000s
+  sys     0m0.046s
+
 
 CPython
 -------
@@ -56,7 +67,7 @@ CPython
   user    0m0.000s
   sys     0m0.031s
 
-参考に64bit版のPython3.4.4でも検証。Python3の方が遅い。
+参考に64bit版のPython3.4.4でも検証。Python3の方が遅かった。
 
   $ C:/Python34/python -V
   Python 3.4.4
@@ -71,4 +82,51 @@ CPython
 
 PyPy
 ----
+
+PyPyは32bitで検証。
+
+  $ pypy-5.1.0-win32/pypy -V
+  Python 2.7.10 (3260adbeba4a, Apr 19 2016, 20:39:40)
+  [PyPy 5.1.0 with MSC v.1500 32 bit]
+
+  $ time pypy-5.1.0-win32/pypy test/prime.py 15000000
+  14999981
+
+  real    0m2.873s
+  user    0m0.031s
+  sys     0m0.015s
+
+
+Cython
+------
+
+Cythonもかなり高速。
+
+  $ python -V
+  Python 3.4.4
+
+  $ python -m cython --version
+  Cython version 0.24b0
+
+  $ time bin/prime_pyx 15000000
+  14999981
+
+  real    0m2.085s
+  user    0m0.015s
+  sys     0m0.046s
+
+
+C言語
+-----
+
+やっぱりこれが最速。
+
+  $ time bin/prime_c 15000000
+  14999981
+
+  real    0m0.144s
+  user    0m0.015s
+  sys     0m0.031s
+
+
 
