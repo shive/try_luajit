@@ -89,7 +89,7 @@ PyPy
 
 https://bitbucket.org/pypy/pypy/downloads/pypy-5.1.0-win32.zip
 
-PyPyは32bitで検証。
+PyPyは32bitで検証。こいつだけzipの展開が必要。
 
   $ pypy-5.1.0-win32/pypy -V
   Python 2.7.10 (3260adbeba4a, Apr 19 2016, 20:39:40)
