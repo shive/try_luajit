@@ -11,6 +11,8 @@ cpu: i7-4870HQ / 2.50GHz / 8CPUs
 lua
 ---
 
+https://www.lua.org/ftp/lua-5.1.4.tar.gz
+
 バージョンはluajitと揃えた。自前でVisualStudio2015で64bitビルドしたもの。
 .luaは事前にバイトコンパイルしても速度は変わらなかった。
 
@@ -27,6 +29,8 @@ lua
 
 luajit
 ------
+
+http://luajit.org/download/LuaJIT-2.0.4.zip
 
 lua同様に事前にバイトコンパイルしても速度は変わらなかった。
 
@@ -83,6 +87,8 @@ CPython
 PyPy
 ----
 
+https://bitbucket.org/pypy/pypy/downloads/pypy-5.1.0-win32.zip
+
 PyPyは32bitで検証。
 
   $ pypy-5.1.0-win32/pypy -V
@@ -129,10 +135,28 @@ C言語
   sys     0m0.031s
 
 
+node.js
+-------
+
+https://nodejs.org/dist/v5.10.1/win-x64/node.exe
+
+JavaScriptでも検証してみた。インタプリタほどではないがjit系の中では遅いという結果。
+
+  $ bin/node -v
+  v5.10.1
+
+  $ time bin/node test/prime.js 15000000
+  14999981
+
+  real    0m3.763s
+  user    0m0.000s
+  sys     0m0.046s
+
+
 まとめ
 ------
 
-C言語 >>> Cython >>> luajit >>> PyPy >>> lua >>> Python2 >>> Python3
+C言語 >>> Cython >>> luajit >>> PyPy >>> node.js >>> （越えられない壁） >>> lua >>> Python2 >>> Python3
 
 CFFIやpyximportも試してみたらいいかもしれないが、実行時にコンパイラが必要になるのでイマイチ。
 
