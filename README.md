@@ -32,7 +32,7 @@ luajit
 
 http://luajit.org/download/LuaJIT-2.0.4.zip
 
-lua同様に事前にバイトコンパイルしても速度は変わらなかった。
+lua同様に事前にバイトコンパイルしても速度は変わらなかったので普通に実行。
 
     $ bin/luajit2 -v
     LuaJIT 2.1.0-beta2 -- Copyright (C) 2005-2016 Mike Pall. http://luajit.org/
