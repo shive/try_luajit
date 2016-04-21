@@ -4,8 +4,8 @@
 検証マシン
 ----------
 
-os: Windows 8.1 64bit
-cpu: i7-4870HQ / 2.50GHz / 8CPUs
+ * os: Windows 8.1 64bit
+ * cpu: i7-4870HQ / 2.50GHz / 8CPUs
 
 
 lua
