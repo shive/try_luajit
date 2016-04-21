@@ -117,9 +117,9 @@ Cythonもかなり高速。
     $ time bin/prime_pyx 15000000
     14999981
 
-    real    0m2.085s
-    user    0m0.015s
-    sys     0m0.046s
+    real    0m1.980s
+    user    0m0.046s
+    sys     0m0.015s
 
 
 C言語
