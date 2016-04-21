@@ -65,14 +65,21 @@ out_dir = env_base.Dir('bin')
 # del env
 
 
-### lua.exe / luac.exe
+### lua
 env = env_base.Clone()
 env.VariantDir(env.Dir('$TEMP/lua_exe'), env.Dir('lua-5.1.4/src'), duplicate=0)
 lua51_sources = env.Glob('$TEMP/lua_exe/*.c')
 lua51_sources.remove(env.File('$TEMP/lua_exe/luac.c'))
-lua51_sources.remove(env.File('$TEMP/lua_exe/lua.c'))
-# env.CopyAs('bin/luac.exe', env.Program('$TEMP/lua_exe/luac.exe', [env.File('$TEMP/lua_exe/luac.c')] + lua51_sources))
-env.CopyAs(out_dir.File('lua.exe'), env.Program('$TEMP/lua_exe/lua.exe', [env.File('$TEMP/lua_exe/lua.c')] + lua51_sources))
+env.CopyAs(out_dir.File('lua.exe'), env.Program('$TEMP/lua_exe/lua.exe', lua51_sources))
+del env
+
+
+### luac
+env = env_base.Clone()
+env.VariantDir(env.Dir('$TEMP/luac_exe'), env.Dir('lua-5.1.4/src'), duplicate=0)
+lua51_sources = env.Glob('$TEMP/luac_exe/*.c')
+lua51_sources.remove(env.File('$TEMP/luac_exe/lua.c'))
+env.CopyAs(out_dir.File('luac.exe'), env.Program('$TEMP/luac_exe/luac.exe', lua51_sources))
 del env
 
 
@@ -81,6 +88,7 @@ env = env_base.Clone()
 luajit2_exe, luajit2_dll = env.Command(['LuaJIT-2.1.0-beta2/src/luajit.exe', 'LuaJIT-2.1.0-beta2/src/lua51.dll'], None,
                                        '@echo off && call msvcbuild.bat', chdir='LuaJIT-2.1.0-beta2/src')
 env.CopyAs(out_dir.File('luajit2.exe'), luajit2_exe)
-env.CopyAs(out_dir.File('lua51.dll'), luajit2_dll)
+env.Depends(out_dir.File('luajit2.exe'), env.CopyAs(out_dir.File('lua51.dll'), luajit2_dll))
+env.Depends(out_dir.File('luajit2.exe'), [env.CopyAs(out_dir.Dir('jit').File(s.name), s) for s in env.Glob('LuaJIT-2.1.0-beta2/src/jit/*')])
 del env
 
