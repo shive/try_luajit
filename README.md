@@ -30,7 +30,7 @@ https://www.lua.org/ftp/lua-5.1.4.tar.gz
 luajit
 ------
 
-http://luajit.org/download/LuaJIT-2.0.4.zip
+http://luajit.org/download/LuaJIT-2.1.0-beta2.zip
 
 lua同様に事前にバイトコンパイルしても速度は変わらなかったので普通に実行。
 
