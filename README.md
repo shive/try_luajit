@@ -130,7 +130,7 @@ C言語
     $ time bin/prime_c 15000000
     14999981
 
-    real    0m0.144s
+    real    0m1.564s
     user    0m0.015s
     sys     0m0.031s
 
