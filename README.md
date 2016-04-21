@@ -148,9 +148,9 @@ JavaScriptでも検証してみた。インタプリタほどではないがjit�
     $ time bin/node test/prime.js 15000000
     14999981
 
-    real    0m3.763s
-    user    0m0.000s
-    sys     0m0.046s
+    real    0m3.330s
+    user    0m0.015s
+    sys     0m0.031s
 
 
 まとめ
