@@ -71,7 +71,7 @@ CPython
     user    0m0.000s
     sys     0m0.031s
 
-参考に64bit版のPython3.4.4でも検証。Python3の方が遅かった。
+参考に64bit版のPython3.4でも検証。Python3の方が遅かった。
 
     $ C:/Python34/python -V
     Python 3.4.4
@@ -81,6 +81,18 @@ CPython
 
     real    1m41.368s
     user    0m0.015s
+    sys     0m0.031s
+
+さらに64bit版のPython3.5。3.4よりちょっと速い。
+
+    $ 'C:/Program Files/Python35/python' -V
+    Python 3.5.1
+
+    $ time 'C:/Program Files/Python35/python' 15000000
+    14999981
+
+    real    1m35.541s
+    user    0m0.000s
     sys     0m0.031s
 
 
