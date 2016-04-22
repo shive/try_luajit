@@ -64,12 +64,12 @@ CPython
     $ C:/Python27/python -V
     Python 2.7.11
 
-    $ time C:/Python27/python test/prime.py 15000000
+    $ time C:/Python27/python test/prime2.py 15000000
     14999981
 
-    real    0m39.280s
-    user    0m0.000s
-    sys     0m0.031s
+    real    0m38.559s
+    user    0m0.031s
+    sys     0m0.015s
 
 参考に64bit版のPython3.4でも検証。Python3の方が遅かった。
 
@@ -79,21 +79,21 @@ CPython
     $ time C:/Python34/python test/prime3.py 15000000
     14999981
 
-    real    1m41.368s
-    user    0m0.015s
-    sys     0m0.031s
+    real    0m53.937s
+    user    0m0.000s
+    sys     0m0.046s
 
 さらに64bit版のPython3.5。3.4よりちょっと速い。
 
     $ 'C:/Program Files/Python35/python' -V
     Python 3.5.1
 
-    $ time 'C:/Program Files/Python35/python' 15000000
+    $ time 'C:/Program Files/Python35/python' test/prime3.py 15000000
     14999981
 
-    real    1m35.541s
+    real    0m50.572s
     user    0m0.000s
-    sys     0m0.031s
+    sys     0m0.046s
 
 
 PyPy
@@ -107,12 +107,12 @@ PyPyは32bitで検証。こいつだけzipの展開が必要。
     Python 2.7.10 (3260adbeba4a, Apr 19 2016, 20:39:40)
     [PyPy 5.1.0 with MSC v.1500 32 bit]
 
-    $ time pypy-5.1.0-win32/pypy test/prime.py 15000000
+    $ time pypy-5.1.0-win32/pypy test/prime2.py 15000000
     14999981
 
-    real    0m2.873s
-    user    0m0.031s
-    sys     0m0.015s
+    real    0m2.808s
+    user    0m0.015s
+    sys     0m0.031s
 
 
 Cython
