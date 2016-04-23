@@ -74,7 +74,7 @@ env_base.Default(out_dir)
 # del env
 
 
-### lua
+# lua
 env = env_base.Clone()
 env.VariantDir(env.Dir('$TEMP/lua_exe'), env.Dir('lua-5.1.4/src'), duplicate=0)
 lua51_sources = env.Glob('$TEMP/lua_exe/*.c')
@@ -106,6 +106,13 @@ del env
 env = env_base.Clone()
 env.VariantDir(env.Dir('$TEMP/prime_c'), env.Dir('test'), duplicate=0)
 env.CopyAs(out_dir.File('prime_c.exe'), env.Program(env.File('$TEMP/prime_c/prime.c')))
+del env
+
+
+### prime_cpp.exe
+env = env_base.Clone()
+env.VariantDir(env.Dir('$TEMP/prime_cpp'), env.Dir('test'), duplicate=0)
+env.CopyAs(out_dir.File('prime_cpp.exe'), env.Program(env.File('$TEMP/prime_cpp/prime.cpp')))
 del env
 
 
