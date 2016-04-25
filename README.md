@@ -96,6 +96,48 @@ CPython
     sys     0m0.046s
 
 
+IronPython
+----------
+
+http://ironpython.codeplex.com/releases/view/169382
+http://ironpython.codeplex.com/downloads/get/970326
+
+    $ time IronPython-2.7.5/ipy64.exe 15000000
+    14999981
+
+    real    0m20.353s
+    user    0m0.031s
+    sys     0m0.000s
+
+IronPythonは計算処理以前にexeの起動自体が若干重い。
+CPythonと比べると10倍近い差がある。
+
+  # time IronPython-2.7.5/ipy.exe test/prime2.py 5
+  3
+
+  real    0m1.374s
+  user    0m0.000s
+  sys     0m0.031s
+
+  # time C:/Python27/python test/prime2.py 5
+  3
+
+  real    0m0.156s
+  user    0m0.046s
+  sys     0m0.000s
+
+
+C#
+--
+
+    $ time bin/prime_cs 15000000
+    14999981
+
+    real    0m3.174s
+    user    0m0.015s
+    sys     0m0.031s
+
+
 PyPy
 ----
 
@@ -132,17 +174,6 @@ Cythonもかなり高速。
     real    0m1.980s
     user    0m0.046s
     sys     0m0.015s
-
-
-C#
---
-
-    $ time bin/prime_cs 15000000
-    14999981
-
-    real    0m3.174s
-    user    0m0.015s
-    sys     0m0.031s
 
 
 C++
@@ -190,7 +221,7 @@ JavaScriptでも検証してみた。インタプリタほどではないがjit�
 まとめ
 ------
 
-C言語 >>> Cython >>> luajit >>> PyPy >>> node.js >>> （越えられない壁） >>> lua >>> Python2 >>> Python3
+C言語 >>> C++ >>> Cython >>> luajit >>> PyPy >>> C# >>> node.js >>> （越えられない壁） >>> IronPython >>> lua >>> Python2 >>> Python3
 
 CFFIやpyximportも試してみたらいいかもしれないが、実行時にコンパイラが必要になるのでイマイチ。
 
