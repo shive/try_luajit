@@ -112,19 +112,19 @@ http://ironpython.codeplex.com/downloads/get/970326
 IronPythonは計算処理以前にexeの起動自体が若干重い。
 CPythonと比べると10倍近い差がある。
 
-  # time IronPython-2.7.5/ipy.exe test/prime2.py 5
-  3
+    # time IronPython-2.7.5/ipy.exe test/prime2.py 5
+    3
 
-  real    0m1.374s
-  user    0m0.000s
-  sys     0m0.031s
+    real    0m1.374s
+    user    0m0.000s
+    sys     0m0.031s
 
-  # time C:/Python27/python test/prime2.py 5
-  3
+    # time C:/Python27/python test/prime2.py 5
+    3
 
-  real    0m0.156s
-  user    0m0.046s
-  sys     0m0.000s
+    real    0m0.156s
+    user    0m0.046s
+    sys     0m0.000s
 
 
 C#
