@@ -134,6 +134,17 @@ Cythonもかなり高速。
     sys     0m0.015s
 
 
+C#
+--
+
+    $ time bin/prime_cs 15000000
+    14999981
+
+    real    0m3.174s
+    user    0m0.015s
+    sys     0m0.031s
+
+
 C++
 ---
 

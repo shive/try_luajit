@@ -11,6 +11,8 @@ env_base = Environment(
     TARGET_ARCH = 'x86_64',
     TEMP = os.environ['TEMP'],
     PYTHON3 = File('C:/Python34/python.exe'),
+    # CSC = Glob(os.path.expandvars(r'${ProgramFiles(x86)}/MSBuild/*/Bin/amd64/csc.exe'))[-1],
+    CSC = Glob(os.path.expandvars(r'C:/Windows/Microsoft.NET/Framework64/v*/csc.exe'))[-1],
     )
 env_base.AppendUnique(
     CPPDEFINES = [
@@ -121,4 +123,10 @@ env = env_base.Clone()
 env.VariantDir(env.Dir('$TEMP/prime_pyx'), env.Dir('test'), duplicate=0)
 env.Command('$TEMP/prime_pyx/prime_pyx.cpp', 'test/prime.pyx', '$PYTHON3 -m cython --cplus --embed -3 -o ${TARGET.abspath} ${SOURCE.abspath}')
 env.CopyAs(out_dir.File('prime_pyx.exe'), env.Program('$TEMP/prime_pyx/prime_pyx.cpp'))
+del env
+
+
+### prime_cs.exe
+env = env_base.Clone()
+env.Command('bin/prime_cs.exe', 'test/prime.cs', '$CSC /nologo /target:exe /out:$TARGET $SOURCE')
 del env
