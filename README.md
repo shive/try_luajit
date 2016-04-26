@@ -8,6 +8,8 @@
  * cpu: i7-4870HQ / 2.50GHz / 8CPUs
 
 
+todo: go java
+
 lua
 ---
 

@@ -1,7 +1,6 @@
 ﻿#!/bin/env python
 # -*- mode: python; coding: utf-8-sig -*-
 #=======================================================================================================================
-__author__ = 'hshibuya <goe@fuzz.co.jp>'
 
 import os
 
@@ -118,7 +117,7 @@ env.CopyAs(out_dir.File('prime_cpp.exe'), env.Program(env.File('$TEMP/prime_cpp/
 del env
 
 
-### prime_pyx.pyd
+### prime_pyx.exe
 env = env_base.Clone()
 env.VariantDir(env.Dir('$TEMP/prime_pyx'), env.Dir('test'), duplicate=0)
 env.Command('$TEMP/prime_pyx/prime_pyx.cpp', 'test/prime.pyx', '$PYTHON3 -m cython --cplus --embed -3 -o ${TARGET.abspath} ${SOURCE.abspath}')

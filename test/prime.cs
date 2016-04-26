@@ -1,6 +1,5 @@
 ﻿// -*- mode: c++; coding: utf-8-with-signature-dos -*-
 //======================================================================================================================
-/// @author hshibuya <goe@fuzz.co.jp>
 
 using System;
 using System.Collections.Generic;
