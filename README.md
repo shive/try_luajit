@@ -164,7 +164,7 @@ PyPyは32bitで検証。要zip展開。
 Cython
 ------
 
-Cythonで test/prime3.py をコンパイルしただけだと遅い。
+Cythonで test/prime3.py をコンパイルしただけだと速度アップはこの程度。
 
     $ time bin/prime3_pyx 15000000
     14999981
@@ -173,7 +173,7 @@ Cythonで test/prime3.py をコンパイルしただけだと遅い。
     user    0m0.000s
     sys     0m0.046s
 
-そこからCython向けに最適化するかなり高速になる。
+そこからCython向けに最適化を施すと爆速になる。
 
     $ python -V
     Python 3.4.4
