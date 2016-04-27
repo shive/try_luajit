@@ -5,7 +5,7 @@ from libc.math cimport sqrt
 from libc.stdlib cimport malloc, free
 from libc.stdio cimport printf
 
-cdef int isprime(int n, const int* primes, int primes_len):
+cdef inline int isprime(int n, const int* primes, int primes_len) nogil:
     cdef double nsqrt = sqrt(n)
     cdef int Li = 0
     for Li in range(primes_len):
@@ -13,7 +13,7 @@ cdef int isprime(int n, const int* primes, int primes_len):
         if n % primes[Li] == 0: return 0
     return n
 
-cdef void prime(int value):
+cdef inline void prime(int value) nogil:
     cdef int* primes = <int*>malloc(value * sizeof(int))
     cdef int primes_len = 0
     cdef int prime

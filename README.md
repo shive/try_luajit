@@ -179,14 +179,14 @@ Cythonで test/prime3.py をコンパイルしただけだと遅い。
     Python 3.4.4
 
     $ python -m cython --version
-    Cython version 0.24b0
+    Cython version 0.24
 
     $ time bin/prime_pyx 15000000
     14999981
 
-    real    0m1.980s
-    user    0m0.046s
-    sys     0m0.015s
+    real    0m2.059s
+    user    0m0.000s
+    sys     0m0.062s
 
 
 C++
