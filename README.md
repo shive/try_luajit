@@ -104,6 +104,8 @@ IronPython
 http://ironpython.codeplex.com/releases/view/169382
 http://ironpython.codeplex.com/downloads/get/970326
 
+要zip展開。
+
     $ time IronPython-2.7.5/ipy64.exe 15000000
     14999981
 
@@ -145,7 +147,7 @@ PyPy
 
 https://bitbucket.org/pypy/pypy/downloads/pypy-5.1.0-win32.zip
 
-PyPyは32bitで検証。こいつだけzipの展開が必要。
+PyPyは32bitで検証。要zip展開。
 
     $ pypy-5.1.0-win32/pypy -V
     Python 2.7.10 (3260adbeba4a, Apr 19 2016, 20:39:40)
@@ -162,7 +164,16 @@ PyPyは32bitで検証。こいつだけzipの展開が必要。
 Cython
 ------
 
-Cythonもかなり高速。
+Cythonで test/prime3.py をコンパイルしただけだと遅い。
+
+    $ time bin/prime3_pyx 15000000
+    14999981
+
+    real    0m29.825s
+    user    0m0.000s
+    sys     0m0.046s
+
+そこからCython向けに最適化するかなり高速になる。
 
     $ python -V
     Python 3.4.4

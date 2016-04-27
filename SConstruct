@@ -125,6 +125,14 @@ env.CopyAs(out_dir.File('prime_pyx.exe'), env.Program('$TEMP/prime_pyx/prime_pyx
 del env
 
 
+### prime3_pyx.exe
+env = env_base.Clone()
+env.VariantDir(env.Dir('$TEMP/prime3_pyx'), env.Dir('test'), duplicate=0)
+env.Command('$TEMP/prime3_pyx/prime3_pyx.cpp', 'test/prime3.py', '$PYTHON3 -m cython --cplus --embed -3 -o ${TARGET.abspath} ${SOURCE.abspath}')
+env.CopyAs(out_dir.File('prime3_pyx.exe'), env.Program('$TEMP/prime3_pyx/prime3_pyx.cpp'))
+del env
+
+
 ### prime_cs.exe
 env = env_base.Clone()
 env.Command('bin/prime_cs.exe', 'test/prime.cs', '$CSC /nologo /target:exe /out:$TARGET $SOURCE')
