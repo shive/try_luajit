@@ -8,8 +8,6 @@
  * cpu: i7-4870HQ / 2.50GHz / 8CPUs
 
 
-todo: go
-
 lua
 ---
 
@@ -247,10 +245,28 @@ JavaScriptでも検証してみた。インタプリタほどではないがjit�
     sys     0m0.031s
 
 
+golang
+------
+
+https://storage.googleapis.com/golang/go1.6.2.windows-amd64.zip
+
+事前コンパイル系にしてはだいぶ遅いが、これは習熟度の問題のような気もする。
+
+    $ go version
+    go version go1.6.2 windows/amd64
+
+    $ time go run test/prime.go 15000000
+    14999981
+
+    real    0m5.192s
+    user    0m0.000s
+    sys     0m0.046s
+
+
 まとめ
 ------
 
-C言語 >>> C++ >>> Cython >>> java >>> luajit >>> PyPy >>> C# >>> node.js >>> （越えられない壁） >>> IronPython >>> lua >>> Python2 >>> Python3
+C言語 >>> C++ >>> Cython >>> java >>> luajit >>> PyPy >>> C# >>> node.js >>> golang >>> （越えられない壁） >>> IronPython >>> lua >>> Python2 >>> Python3
 
 CFFIやpyximportも試してみたらいいかもしれないが、実行時にコンパイラが必要になるのでイマイチ。
 
