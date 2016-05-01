@@ -8,7 +8,7 @@
  * cpu: i7-4870HQ / 2.50GHz / 8CPUs
 
 
-todo: go java
+todo: go
 
 lua
 ---
@@ -142,6 +142,22 @@ C#
     sys     0m0.031s
 
 
+java
+----
+
+    $ java -version
+    java version "1.8.0_92"
+    Java(TM) SE Runtime Environment (build 1.8.0_92-b14)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.92-b14, mixed mode)
+
+    $ (cd test && time java prime 15000000)
+    14999981
+
+    real    0m2.230s
+    user    0m0.015s
+    sys     0m0.015s
+
+
 PyPy
 ----
 
@@ -234,7 +250,7 @@ JavaScriptでも検証してみた。インタプリタほどではないがjit�
 まとめ
 ------
 
-C言語 >>> C++ >>> Cython >>> luajit >>> PyPy >>> C# >>> node.js >>> （越えられない壁） >>> IronPython >>> lua >>> Python2 >>> Python3
+C言語 >>> C++ >>> Cython >>> luajit >>> java >>> PyPy >>> C# >>> node.js >>> （越えられない壁） >>> IronPython >>> lua >>> Python2 >>> Python3
 
 CFFIやpyximportも試してみたらいいかもしれないが、実行時にコンパイラが必要になるのでイマイチ。
 
