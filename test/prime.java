@@ -4,7 +4,7 @@ import java.util.*;
 
 class prime {
     public static boolean isprime(int n, List<Integer> primes) {
-        double nsqrt = Math.sqrt(n);
+        int nsqrt = (int)Math.sqrt(n);
         for(int Li : primes) {
             if(nsqrt < Li) { break; }
             if(n % Li == 0) { return false; }

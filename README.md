@@ -153,7 +153,7 @@ java
     $ (cd test && time java prime 15000000)
     14999981
 
-    real    0m2.230s
+    real    0m2.088s
     user    0m0.015s
     sys     0m0.015s
 
@@ -250,7 +250,7 @@ JavaScriptでも検証してみた。インタプリタほどではないがjit�
 まとめ
 ------
 
-C言語 >>> C++ >>> Cython >>> luajit >>> java >>> PyPy >>> C# >>> node.js >>> （越えられない壁） >>> IronPython >>> lua >>> Python2 >>> Python3
+C言語 >>> C++ >>> Cython >>> java >>> luajit >>> PyPy >>> C# >>> node.js >>> （越えられない壁） >>> IronPython >>> lua >>> Python2 >>> Python3
 
 CFFIやpyximportも試してみたらいいかもしれないが、実行時にコンパイラが必要になるのでイマイチ。
 
