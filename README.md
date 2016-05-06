@@ -182,7 +182,7 @@ Cython
 
 Cythonで test/prime3.py をコンパイルしただけだと速度アップはこの程度。
 
-    $ time bin/prime3_pyx 15000000
+    $ time bin/prime3 15000000
     14999981
 
     real    0m28.989s
@@ -200,9 +200,9 @@ Cythonで test/prime3.py をコンパイルしただけだと速度アップは�
     $ time bin/prime_pyx 15000000
     14999981
 
-    real    0m2.059s
-    user    0m0.000s
-    sys     0m0.062s
+    real    0m2.046s
+    user    0m0.047s
+    sys     0m0.015s
 
 
 C++
