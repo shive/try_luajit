@@ -190,10 +190,9 @@ Cythonで test/prime3.py をコンパイルしただけだと速度アップは�
     sys     0m0.031s
 
 そこからCython向けに最適化を施すと爆速になる。
-
-    $ python -V
-    Python 3.4.4
-
+listをstd::vectorに置換。Pythonのスタンダード関数をC標準関数に置換。
+nogilを付けておくとPythonAPIが呼び出せない制約がかかるので最適化しやすい。
+ 
     $ python -m cython --version
     Cython version 0.24
 
