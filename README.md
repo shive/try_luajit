@@ -60,6 +60,7 @@ CPython
 -------
 
 64bit版のPython2.7.11で検証。
+array.appendはlist.appendの倍くらい重い。剰余演算(%)は型が違うと重い。ゼロと比較するよりはnotを使う方が速い。
 
     $ C:/Python27/python -V
     Python 2.7.11
@@ -67,9 +68,9 @@ CPython
     $ time C:/Python27/python test/prime2.py 15000000
     14999981
 
-    real    0m38.559s
-    user    0m0.031s
-    sys     0m0.015s
+    real    0m38.026s
+    user    0m0.000s
+    sys     0m0.047s
 
 参考に64bit版のPython3.4でも検証。Python3の方が遅かった。
 
