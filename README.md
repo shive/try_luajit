@@ -97,17 +97,29 @@ generatorよりmapの方が速かった。
     user    0m0.000s
     sys     0m0.046s
 
-フライングでPython3.6でも計測。徐々にPython2.7の速度に近づいている。
+Python3.6でも計測。徐々にPython2.7の速度に近づいている。
 
-    $ 'C:/Users/hoge/AppData/Local/Programs/Python/Python36/python.exe' -V
-    Python 3.6.0a3
+    $ '$LOCALAPPDATA/Programs/Python/Python36/python.exe' -V
+    Python 3.6.2
 
-    $ 'C:/Users/hoge/AppData/Local/Programs/Python/Python36/python.exe' test/prime3.py 15000000
+    $ '$LOCALAPPDATA/Programs/Python/Python36/python.exe' test/prime3.py 15000000
     14999981
 
-    real    0m40.379s
+    real    0m38.679s
     user    0m0.000s
-    sys     0m0.031s
+    sys     0m0.015s
+
+Python3.7でも計測。Python3.6とあんまり変わらない。
+
+    $ '$LOCALAPPDATA/Programs/Python/Python37/python.exe' -V
+    Python 3.7.0
+
+    $ '$LOCALAPPDATA/Programs/Python/Python37/python.exe' test/prime3.py 15000000
+    14999981
+
+    real    0m40.774s
+    user    0m0.000s
+    sys     0m0.015s
 
 
 IronPython
